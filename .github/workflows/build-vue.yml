@@ -1,0 +1,73 @@
+name: Build Vue Frontend
+
+on:
+  push:
+    branches: [ main, master, dev ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  build-student:
+    name: Build Student Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+        cache: 'npm'
+        cache-dependency-path: 'source/vue/xzs-student/package-lock.json'
+
+    - name: Install dependencies
+      run: |
+        cd source/vue/xzs-student
+        npm ci
+
+    - name: Build project
+      run: |
+        cd source/vue/xzs-student
+        npm run build
+
+    - name: Upload student build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: student-frontend-dist
+        path: source/vue/xzs-student/dist/
+        retention-days: 30
+
+  build-admin:
+    name: Build Admin Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16'
+        cache: 'npm'
+        cache-dependency-path: 'source/vue/xzs-admin/package-lock.json'
+
+    - name: Install dependencies
+      run: |
+        cd source/vue/xzs-admin
+        npm ci
+
+    - name: Build project
+      run: |
+        cd source/vue/xzs-admin
+        npm run build
+
+    - name: Upload admin build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: admin-frontend-dist
+        path: source/vue/xzs-admin/dist/
+        retention-days: 30
