@@ -7,7 +7,7 @@
       <div class="lowin-box lowin-register">
         <div class="lowin-box-inner">
           <el-form ref="loginForm" :model="loginForm">
-            <p>学之思开源考试系统</p>
+            <p>在线考试系统</p>
             <div class="lowin-group">
               <label>用户名 </label>
               <el-input ref="userName" v-model="loginForm.userName" class="lowin-input" placeholder="用户名"
@@ -36,9 +36,7 @@
         </div>
       </div>
     </div>
-    <div class="account-foot-copyright">
-      <span>Copyright ©2019-2025 武汉思维跳跃科技有限公司 版权所有</span>
-    </div>
+
   </div>
 </template>
 
