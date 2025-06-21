@@ -37,7 +37,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: student-frontend-dist
-        path: source/vue/xzs-student/dist/
+        path: source/vue/xzs-student/student/
         retention-days: 30
 
   build-admin:
@@ -69,5 +69,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: admin-frontend-dist
-        path: source/vue/xzs-admin/dist/
+        path: source/vue/xzs-admin/admin/
         retention-days: 30
